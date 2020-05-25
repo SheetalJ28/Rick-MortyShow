@@ -24,6 +24,9 @@ export class AppComponent {
   selectedFilters(event: any) {
     if (event.checked) {
       this.filters.push(event);
+    } else {
+      let index = this.filters.findIndex(x => x.name === event.name);
+      this.deleteFilter(index);
     }
     let searchResults = this.searchData(event.category.toLowerCase(), event.name, this.results);
     this.results = searchResults;
@@ -31,6 +34,7 @@ export class AppComponent {
   }
   deleteFilter(index: number) {
     this.filters.splice(index, 1);
+    debugger;
     this.filters.forEach(elem => {
       let searchResults = this.searchData(elem.category.toLowerCase(), elem.name, this.allResults);
       this.results = searchResults;

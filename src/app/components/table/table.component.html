@@ -4,6 +4,12 @@
 		<div class="row">
 			<div class="col-12 image-container">
 				<img [src]="character.image">
+				<div class="image-text">
+					<span>{{character.name}}</span>
+					<span class="text-info">
+						id - {{character.id}} - {{character.created}}
+					</span>
+				</div>
 			</div>
 		</div>
 		<ul class="list-group">

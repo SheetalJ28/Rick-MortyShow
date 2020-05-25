@@ -14,8 +14,29 @@
 		img {
 			width: inherit;
 			height: inherit;
+			position: relative;
 			border-top-left-radius: 10px;
 			border-top-right-radius: 10px;
+		}
+		.image-text {
+			position: absolute; 
+			bottom: 0; 
+			left: 0; 
+			width: 100%;
+			color: white; 
+			font-size: 24px;
+			font-weight: bold; 
+			letter-spacing: -1px;  
+			background: rgb(0, 0, 0); /* fallback color */
+			background: rgba(0, 0, 0, 0.7);
+			padding: 10px;
+			span {
+				display: block; 
+			}
+			.text-info {
+				color: white;
+				font-size: 15px;
+			}
 		}
 	}
 	.character-container {
