@@ -1,0 +1,31 @@
+<div class="row filter-heading">
+	<div class="col-12">{{filtersHeading}}</div>
+	<div class="col-12 selected-filters">
+		<span *ngFor="let filter of filters; let i = index" class="filter-category">{{filter.name}}
+			<span class="fa fa-close" (click)="delete(filter, i)"></span>
+		</span>
+	</div>
+	<div class="col-12 filter-section">
+		<div class="row">
+			<div class="col-md-3 col-lg-3">
+				<!-- <label>Search by Name</label> -->
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" #searchName placeholder="Search by name" aria-label="Search by name"
+						aria-describedby="basic-addon2">
+					<div class="input-group-append">
+						<span class="input-group-text" id="basic-addon2" (click)="searchByName(searchName.value)">Search</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 col-lg-3 select-box">
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect01" (change)="onChange($event)">
+						<option selected>Sort by ID</option>
+						<option value="asc">Ascending</option>
+						<option value="desc">Descending</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

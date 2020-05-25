@@ -1,0 +1,9 @@
+<div class="container-fluid row">
+	<app-left-menu class="col-12 col-md-2 col-lg-2 col-sm-12" (selectedFilters)="selectedFilters($event)"></app-left-menu>
+	<div class="col-12 col-md-10 col-lg-10 col-sm-12">
+		<app-search-filters [filters]="filters" (searchName)="searchName($event)" (sortData)="sortData($event)"
+			(deleteFilter)="deleteFilter($event)">
+		</app-search-filters>
+		<app-table [results]="results"></app-table>
+	</div>
+</div>
