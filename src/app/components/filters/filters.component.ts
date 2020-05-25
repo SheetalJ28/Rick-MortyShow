@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class FiltersComponent implements OnInit {
 
   @Input('filterHeading') filterHeading: string = '';
-  @Input('filterArray') filterArray: Array<string> = [];
+  @Input('filterArray') filterArray: Array<any> = [];
   @Input('indexID') indexID: string = '';
   @Output() selectedFilter: EventEmitter<any> = new EventEmitter<any>();
 
@@ -17,12 +17,13 @@ export class FiltersComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  checkedInput(event: any, filterCat: string) {
+  checkedInput(event: any, filterCat: string, index: number) {
     let filter = {
       "name": filterCat,
       "checked": event,
       "category": this.filterHeading
     }
+    this.filterArray[index].checked = event;
     this.selectedFilter.emit(filter);
     // console.log(filter);
   }

@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import filters from '../../models/data-filter';
 
 @Component({
   selector: 'app-left-menu',
@@ -7,15 +8,17 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class LeftMenuComponent implements OnInit {
 
+  @Input('filtersData') filtersData: any = [];
   @Output() selectedFilters: EventEmitter<any> = new EventEmitter<any>();
 
   filtersHeading: Array<string> = ["Species", "Gender", "Origin"];
   showFilters: boolean = true;
-  filtersData: Array<any> = [
-    ["Human", "Mythology", "Other Species..."],
-    ["Male", "Female"],
-    ["Unknown", "Earth (Replacement Dimension)", "Abadango", "Other Origins..."]
-  ];
+  // filtersData: Array<any> = [
+  //   ["Human", "Mythology", "Other Species..."],
+  //   ["Male", "Female"],
+  //   ["Unknown", "Earth (Replacement Dimension)", "Abadango", "Other Origins..."]
+  // ];
+  // filtersData: Array<any> = filters;
   filters: Array<string> = [];
 
   constructor() { }

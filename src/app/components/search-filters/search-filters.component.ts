@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class SearchFiltersComponent implements OnInit {
 
-  @Input('filters') filters: Array<any> = ["human", "abcd"];
+  @Input('filters') filters: Array<any> = [];
   @Output() searchName: EventEmitter<any> = new EventEmitter<any>();
   @Output() sortData: EventEmitter<any> = new EventEmitter<any>();
   @Output() deleteFilter: EventEmitter<any> = new EventEmitter<any>();
@@ -28,7 +28,6 @@ export class SearchFiltersComponent implements OnInit {
   }
   onChange(event: any) {
     this.sortData.emit(event.target.value);
-    console.log(event);
   }
 
 }

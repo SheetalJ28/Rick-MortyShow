@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RestServiceService } from './services/rest-service.service';
+import filters from './models/data-filter';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ export class AppComponent {
   filters: Array<any> = [];
   results: any;
   allResults: any;
+  filtersData: Array<any> = filters;
 
   constructor(private _rest: RestServiceService) { }
 
@@ -24,21 +26,36 @@ export class AppComponent {
   selectedFilters(event: any) {
     if (event.checked) {
       this.filters.push(event);
+      let searchResults = this.searchData(event.category.toLowerCase(), event.name, this.results);
+      this.results = searchResults;
     } else {
       let index = this.filters.findIndex(x => x.name === event.name);
       this.deleteFilter(index);
     }
-    let searchResults = this.searchData(event.category.toLowerCase(), event.name, this.results);
-    this.results = searchResults;
-    console.log('eve- ', searchResults);
   }
   deleteFilter(index: number) {
-    this.filters.splice(index, 1);
-    debugger;
-    this.filters.forEach(elem => {
-      let searchResults = this.searchData(elem.category.toLowerCase(), elem.name, this.allResults);
-      this.results = searchResults;
+    let tempFilter = this.filters[index];
+    this.filtersData.forEach(elem => {
+      elem.data.filter(item => {
+        if( item.data.toLowerCase() === tempFilter.name.toLowerCase()) {
+          item.checked = false;
+          return;
+        }
+      });
     })
+    this.filters.splice(index, 1);
+    if (this.filters.length > 0) {
+      let searchAll = this.allResults;
+      this.filters.forEach(elem => {
+        let searchResults = this.searchData(elem.category.toLowerCase(), elem.name, searchAll);
+        searchAll = searchResults;
+      });
+      this.results = searchAll;
+    }
+    else {
+      this.results = Object.assign(this.allResults);
+    }
+
   }
   searchName(event: string) {
     let searchResults;
@@ -52,16 +69,15 @@ export class AppComponent {
 
   searchData(key: string, search: string, data: any) {
     let searchedResults = data.filter(element => {
-      if(!element.hasOwnProperty(key)) {
+      if (!element.hasOwnProperty(key)) {
         return 0;
       } else
-      if (typeof element[key] == 'string') {
-        return element[key].toLowerCase().includes(search.toLocaleLowerCase());
-      } else {
-        return element[key].name.toLowerCase().includes(search.toLocaleLowerCase());
-      }
+        if (typeof element[key] == 'string') {
+          return element[key].toLowerCase().includes(search.toLocaleLowerCase());
+        } else {
+          return element[key].name.toLowerCase().includes(search.toLocaleLowerCase());
+        }
     });
-    console.log('sxs- ', searchedResults);
     return searchedResults;
   }
   sortData(event: string) {

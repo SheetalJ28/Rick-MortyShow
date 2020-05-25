@@ -3,9 +3,10 @@
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let filter of filterArray; let i = index">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="{{indexID + '-' + i}}" (change)="checkedInput($event.target.checked, filter)">
+        <input class="form-check-input" [checked]="filter.checked" type="checkbox" value="" id="{{indexID + '-' + i}}"
+          (change)="checkedInput($event.target.checked, filter.data, i)">
         <label class="form-check-label" for="{{indexID + '-' + i}}">
-          {{filter}}
+          {{filter.data}}
         </label>
       </div>
     </li>

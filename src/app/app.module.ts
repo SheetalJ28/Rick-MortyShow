@@ -10,6 +10,7 @@ import { TableComponent } from './components/table/table.component';
 import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { SearchFiltersComponent } from './components/search-filters/search-filters.component';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SearchFiltersComponent } from './components/search-filters/search-filte
     TableComponent,
     LeftMenuComponent,
     FiltersComponent,
-    SearchFiltersComponent
+    SearchFiltersComponent,
+    DateAgoPipe
   ],
   imports: [
     BrowserModule,

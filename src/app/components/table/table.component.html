@@ -6,8 +6,8 @@
 				<img [src]="character.image">
 				<div class="image-text">
 					<span>{{character.name}}</span>
-					<span class="text-info">
-						id - {{character.id}} - {{character.created}}
+					<span class="image-info">
+						id - {{character.id}} - {{character.created | dateAgo}}
 					</span>
 				</div>
 			</div>
